@@ -4,6 +4,13 @@
 #include <locale.h>
 #include "queue.h"
 
+void remove_newline(char* str) {
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n') {
+        str[len - 1] = '\0';
+    }
+}
+
 int main(){
     setlocale(LC_ALL, "Portuguese");
 
@@ -17,9 +24,21 @@ int main(){
     int idx = 0;
     int count = 0;
     
-    fgets(entry, MAX_NAME_LENGTH, stdin);
-    
-    while(entry[0] != 'f'){
+
+    while (1) {
+        printf("> ");
+        fgets(entry, MAX_NAME_LENGTH, stdin);
+        remove_newline(entry);
+
+        if (strlen(entry) == 0) {
+            continue;
+        }
+
+
+        if (entry[0] == 'f') {
+            break;
+        }
+
         char* name = (char*)malloc(MAX_NAME_LENGTH * sizeof(char));
 
         switch(entry[0]){
@@ -59,7 +78,7 @@ int main(){
                 
                 order[idx] = (char*)malloc(MAX_NAME_LENGTH * sizeof(char));
                 strcpy(order[idx++], name);
-                printf("Aqui %s", name);
+                printf("%s\n", name);
                 break;
             default:
                 printf("Instrução desconhecida.\n");
@@ -67,11 +86,12 @@ int main(){
         }
 
         fgets(entry, MAX_NAME_LENGTH, stdin);
+        remove_newline(entry);
     }
 
     if(order[0] != NULL){
         for(int i = 0; i < idx; i++){
-            printf("%s", order[i]);
+            printf("%s\n", order[i]);
         }
     }
 
