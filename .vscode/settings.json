@@ -1,0 +1,10 @@
+{
+    "C_Cpp.default.compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+    "files.associations": {
+        "string.h": "c",
+        "queue.h": "c",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "typeinfo": "c"
+    }
+}
