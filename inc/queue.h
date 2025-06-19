@@ -24,6 +24,4 @@ void clear(t_queue* queue);
 
 int size(t_queue* queue);
 
-
-
 #endif
